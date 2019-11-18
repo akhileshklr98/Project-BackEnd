@@ -74,9 +74,17 @@ app.post('/addFarmerDetails', (req,res)=>{
     }
     MilmaData.updateOne({"socityName" : socityName},{$push: {sponsor: farmer}}).then( (result)=>{
         res.send(result);
-    })
+    });
     
-})
+});
+
+app.get('/socities',function(req,res){
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    MilmaData.find().then( result=>{
+        res.send(result);
+    })
+});
 
 app.listen(3000, function(){
     console.log('Listening to Port 3000');
