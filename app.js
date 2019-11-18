@@ -13,7 +13,7 @@ app.post('/login',function(req,res){
     // console.log(req.body);
     var username = req.body.user.name;
     var password = req.body.user.pass;
-    MilmaData.socity.findOne({$and:[{userName:username},{passWord:password}]})
+    MilmaData.findOne({$and:[{userName:username},{passWord:password}]})
                 .then(function(user){
                     res.send(user);
                 });
@@ -34,7 +34,7 @@ app.post('/addSocity',function(req,res){
         passWord: req.body.socity.passWord,
         isAdmin: 0
     }
-    var socity = new MilmaData.socity(user);
+    var socity = new MilmaData(user);
     socity.save().then( (result)=>{
         console.log(result);
         res.send(result);
@@ -46,17 +46,17 @@ app.post('/addSale', (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*")
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.body);
+    var socityName = req.body.sale.socityName;
     var sale = {
-        socityName: req.body.sale.socityName,
         Date: req.body.sale.Date,
         todayPrice: req.body.sale.todayPrice,
         totalQty: req.body.sale.totalQty,
         totalAmount: req.body.sale.totalAmount
     }
-    var sale = new MilmaData.sale(sale);
-    sale.save().then( (result=>{
+    console.log(sale);
+    MilmaData.updateOne({"socityName" : socityName},{$push: {sale: sale}}).then( (result)=>{
         res.send(result);
-    }));
+    });
 });
 
 app.post('/addFarmerDetails', (req,res)=>{
@@ -64,18 +64,18 @@ app.post('/addFarmerDetails', (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*")
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.body);
+    var socityName = req.body.farmer.socityName;
     var farmer = {
-        socityName: req.body.farmer.socityName,
         Date: req.body.farmer.Date,
         farmerName: req.body.farmer.farmerName,
         todayPrice: req.body.farmer.todayPrice,
         totalQty: req.body.farmer.totalQty,
         totalAmount: req.body.farmer.totalAmount
     }
-    var milma = new MilmaData.farmer(farmer);
-    milma.save().then( (result=>{
+    MilmaData.updateOne({"socityName" : socityName},{$push: {sponsor: farmer}}).then( (result)=>{
         res.send(result);
-    }));
+    })
+    
 })
 
 app.listen(3000, function(){
