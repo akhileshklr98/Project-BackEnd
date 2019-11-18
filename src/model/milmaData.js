@@ -13,7 +13,29 @@ var userSchema = new schema ({
     passWord : String,
     isAdmin : Number
 });
-
 var userData = mongoose.model('user', userSchema);
 
-module.exports = userData;
+var salesSchema = new schema ({
+    socityName: String,
+    Date: String,
+    todayPrice: Number,
+    totalQty: Number,
+    totalAmount: Number
+});
+
+var saleData = mongoose.model('sale', salesSchema);
+
+var farmerSchema = new schema ({
+    socityName: String,
+    Date: String,
+    farmerName: String,
+    todayPrice: Number,
+    totalQty: Number,
+    totalAmount: Number
+});
+
+var farmerData = mongoose.model('farmer', farmerSchema);
+
+module.exports.socity = userData;
+module.exports.sale = saleData;
+module.exports.farmer = farmerData;
