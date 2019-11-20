@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/MilmaDb');
-// mongoose.connect('https://cloud.mongodb.com/v2/5dd424949ccf6484fd972518#metrics/replicaSet/5dd42542a6f23940b5cc4840/explorer/MilmaDb/users');
+// mongoose.connect('mongodb://localhost:27017/MilmaDb');
+mongoose.connect('mongodb+srv://akhileshklr_98:akhilesh98@cluster0-7k0zl.mongodb.net/MilmaDb?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 const schema = mongoose.Schema;
 
@@ -16,7 +16,9 @@ var userSchema = new schema ({
     sale : Array,
     sponsor : Array
 });
+
 var userData = mongoose.model('user', userSchema);
+module.exports = userData;
 
 // var salesSchema = new schema ({
 //     socityName: String,
@@ -39,7 +41,7 @@ var userData = mongoose.model('user', userSchema);
 
 // var farmerData = mongoose.model('farmer', farmerSchema);
 
-module.exports = userData;
+
 // module.exports.socity = userData;
 // module.exports.sale = saleData;
 // module.exports.farmer = farmerData;

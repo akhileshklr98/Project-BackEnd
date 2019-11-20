@@ -83,7 +83,9 @@ app.get('/socities',function(req,res){
     res.header("Access-Control-Allow-Origin", "*")
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     MilmaData.find().then( result=>{
+console.log("akhilesh");
         res.send(result);
+console.log(result)
     })
 });
 
