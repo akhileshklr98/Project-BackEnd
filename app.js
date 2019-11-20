@@ -10,12 +10,13 @@ app.use(bodyParser.json());
 app.post('/login',function(req,res){
     res.header("Access-Control-Allow-Origin", "*")
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-    // console.log(req.body);
+    console.log(req.body);
     var username = req.body.user.name;
     var password = req.body.user.pass;
     MilmaData.findOne({$and:[{userName:username},{passWord:password}]})
                 .then(function(user){
                     res.send(user);
+                    console.log(user);
                 });
 });
 
@@ -84,6 +85,16 @@ app.get('/socities',function(req,res){
     MilmaData.find().then( result=>{
         res.send(result);
     })
+});
+
+app.get('/report', (req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    MilmaData.find({"sale.Date": "2019-11-18"},{_id : 0, socityName: 1, "sale": {$elemMatch: {"Date":'2019-11-18'}}, sale : 1})
+    .then( result=>{
+        // console.log(result);
+        res.send(result);
+    });
 });
 
 app.listen(3000, function(){

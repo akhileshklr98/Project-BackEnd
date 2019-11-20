@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/MilmaDb');
+// mongoose.connect('https://cloud.mongodb.com/v2/5dd424949ccf6484fd972518#metrics/replicaSet/5dd42542a6f23940b5cc4840/explorer/MilmaDb/users');
 
 const schema = mongoose.Schema;
 
