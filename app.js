@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 var app = new express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}))
 
 app.post('/login',function(req,res){
     res.header("Access-Control-Allow-Origin", "*")
