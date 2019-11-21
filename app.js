@@ -99,6 +99,6 @@ app.get('/report', (req,res)=>{
     });
 });
 
-app.listen(3000, function(){
-    console.log('Listening to Port 3000');
+app.listen(process.env.PORT || 3000, ()=>{
+    console.log("Listening of port 3000");
 });
