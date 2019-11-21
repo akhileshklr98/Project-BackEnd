@@ -6,10 +6,10 @@ const bodyParser = require('body-parser');
 var app = new express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.post('/login',function(req,res){
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.body);
     var username = req.body.user.name;
@@ -22,8 +22,8 @@ app.post('/login',function(req,res){
 });
 
 app.post('/addSocity',function(req,res){
-    console.log('insert')
-    res.header("Access-Control-Allow-Origin", "*")
+    console.log('insert');
+    res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.body);
     var user = {
@@ -45,7 +45,7 @@ app.post('/addSocity',function(req,res){
 
 app.post('/addSale', (req,res)=>{
     console.log('sale');
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.body);
     var socityName = req.body.sale.socityName;
@@ -63,7 +63,7 @@ app.post('/addSale', (req,res)=>{
 
 app.post('/addFarmerDetails', (req,res)=>{
     console.log('Farmer');
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     console.log(req.body);
     var socityName = req.body.farmer.socityName;
@@ -81,7 +81,7 @@ app.post('/addFarmerDetails', (req,res)=>{
 });
 
 app.get('/socities',function(req,res){
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     MilmaData.find().then( result=>{
         res.send(result);
@@ -90,7 +90,7 @@ console.log(result)
 });
 
 app.get('/report', (req,res)=>{
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
     MilmaData.find({"sale.Date": "2019-11-18"},{_id : 0, socityName: 1, "sale": {$elemMatch: {"Date":'2019-11-18'}}, sale : 1})
     .then( result=>{
